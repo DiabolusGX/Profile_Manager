@@ -81,7 +81,6 @@ public class EditPrefrences extends AppCompatActivity {
         Toast.makeText(this, "for non busy hours : "+radioButtonFree.getText(),
                 Toast.LENGTH_SHORT).show();
     }
-
     //DND ACCESS
     private void checkDndPermission(Context context) {
         NotificationManager notificationManager =
