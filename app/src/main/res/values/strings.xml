@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Profile Manager</string>
+    <string name="app_name">Sound River</string>
+    <string name="select_your_preferred_profile_during_busy_hours_night_time_and_free_time">Select your preferred profile during Busy Hours, Night time and Free Time</string>
 </resources>

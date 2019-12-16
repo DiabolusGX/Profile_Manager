@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/darkbg"
+    tools:context=".EditPrefrences">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="402dp"
+        android:layout_height="109dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/soundboard" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:inputType="textMultiLine"
+        android:text="Select what profile you want on \n busy and non-busy hours"
+        android:textAlignment="center"
+        android:textColor="#FC7B53"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupBusy"
+        android:layout_width="97dp"
+        android:layout_height="138dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="84dp"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <RadioButton
+            android:id="@+id/radio_Silent"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:checked="true"
+            android:onClick="checkButton"
+            android:text="Silent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_Vibrate"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:onClick="checkButton"
+            android:text="Vibrate"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_Ringing"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:onClick="checkButton"
+            android:text="Ringing"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroupFree"
+        android:layout_width="97dp"
+        android:layout_height="138dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/radioGroupBusy">
+
+        <RadioButton
+            android:id="@+id/radio_Silent_free"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:checked="true"
+            android:onClick="checkButton2"
+            android:text="Silent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_Vibrate_free"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:onClick="checkButton2"
+            android:text="Vibrate"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radio_Ringing_free"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:onClick="checkButton2"
+            android:text="Ringing"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        android:inputType="textMultiLine"
+        android:text="BUSY \n HOURS"
+        android:textAlignment="center"
+        android:textColor="#FF7648"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:inputType="textMultiLine"
+        android:text="NON-BUSY \n HOURS"
+        android:textAlignment="center"
+        android:textColor="#FF7648"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
+        android:background="@drawable/rounded_button"
+        android:text="SUBMIT"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_selected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine|textImeMultiLine"
+        android:text="Your selected MODE : "
+        android:textAlignment="center"
+        android:textColor="#FF5722"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/submitBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupBusy"
+        app:layout_constraintVertical_bias="0.611" />
+</androidx.constraintlayout.widget.ConstraintLayout>
