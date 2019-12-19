@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class AddSchedule extends AppCompatActivity {
 
-    //EditPrefrences editPrefrences = new EditPrefrences();
+    //EditPreferences editPrefrences = new EditPreferences();
 
     Button addTimingBtn, viewTimingBtn, editTimingBtn, deleteTimingBtn;
     TimePicker startTimingPicker, endTimingPicker;

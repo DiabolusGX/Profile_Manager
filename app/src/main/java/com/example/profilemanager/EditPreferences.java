@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class EditPrefrences extends AppCompatActivity {
+public class EditPreferences extends AppCompatActivity {
 
     private AudioManager myAudioManager;
     Calendar c = Calendar.getInstance();
@@ -63,7 +63,7 @@ public class EditPrefrences extends AppCompatActivity {
                 currentTime = currentTime();
                 changeProfile();
 
-                Toast.makeText(EditPrefrences.this,"Current Time : " +currentTime()
+                Toast.makeText(EditPreferences.this,"Current Time : " +currentTime()
                          +" \n Busy from "+busyHoursStarting+" to "+busyHoursEnding,
                         Toast.LENGTH_LONG).show();
             }

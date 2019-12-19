@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startEditPrefActivity() {
-        Intent intent = new Intent(MainActivity.this, EditPrefrences.class);
+        Intent intent = new Intent(MainActivity.this, EditPreferences.class);
         startActivity(intent);
     }
 
