@@ -14,17 +14,18 @@ import android.widget.Toast;
 
 public class AddSchedule extends AppCompatActivity {
 
+    //EditPrefrences editPrefrences = new EditPrefrences();
+
     Button addTimingBtn, viewTimingBtn, editTimingBtn, deleteTimingBtn;
-    DatabaseHelp myDb;
     TimePicker startTimingPicker, endTimingPicker;
     EditText timeTesting, idTiming;
+    String startTime = "12:29 AM"; String endTime = "12:30 AM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
 
-        myDb = new DatabaseHelp(this);
         idTiming = findViewById(R.id.idTiming);
         addTimingBtn = findViewById(R.id.addTimingBtn);
         viewTimingBtn = findViewById(R.id.viewTimingBtn);
@@ -33,37 +34,22 @@ public class AddSchedule extends AppCompatActivity {
         startTimingPicker = findViewById(R.id.startTimingPicker);
         endTimingPicker = findViewById(R.id.endTimingPicker);
 
-//        addData();
-//        viewData();
+        addData();
+        viewData();
+        editData();
+        deleteData();
     }
 
-    public void viewData(){
+    private void viewData(){
         viewTimingBtn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Cursor res = myDb.getAllData();
-                        if(res.getCount() == 0){
-                            showMessage("ERROR : ", "NO DATA FOUND");
-                            return;
-                        }
-                        StringBuffer buffer = new StringBuffer();
-                        while(res.moveToNext()){
-                            buffer.append("ID : "+res.getString(0)+"\n");
-                            buffer.append("STARTING TIME : "+res.getString(1)+"\n");
-                            buffer.append("ENDING TIME : "+res.getString(2)+"\n\n");
-                        }
-                        showMessage("DATA : ", buffer.toString());
+                        Toast.makeText(AddSchedule.this,"WORK IN PROGRESS",
+                                Toast.LENGTH_LONG).show();
                     }
                 }
         );
-    }
-    public void showMessage(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
     }
 
     private void addData() {
@@ -71,26 +57,43 @@ public class AddSchedule extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        boolean ifInserted = myDb.insertTimings(startPickerData(),endPickerData());
-                        if (ifInserted == true) {
-                            Toast.makeText(AddSchedule.this,"Timing added.",
-                                    Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(AddSchedule.this,"Error: Failed to add Timings.",
-                                    Toast.LENGTH_LONG).show();
-                        }
+                        String x = startPickerData();
+                        String y = endPickerData();
                         //testing toast
-                        /*Toast.makeText(AddSchedule.this,"HOUR ARE = "+startTimingPicker.
-                                        getCurrentHour().toString(),
-                                Toast.LENGTH_LONG).show();*/
+                        Toast.makeText(AddSchedule.this,"FROM " +x+" to "+y,
+                                Toast.LENGTH_LONG).show();
                     }
                 }
         );
     }
-    public String startPickerData(){
+    private void editData(){
+        editTimingBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(AddSchedule.this,"WORK IN PROGRESS",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+    private void deleteData(){
+        deleteTimingBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(AddSchedule.this,"WORK IN PROGRESS",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+
+    //returns stating time string of busy hours
+    private String startPickerData(){
         Integer startingHours = startTimingPicker.getCurrentHour();
         Integer startingMinutes = startTimingPicker.getCurrentMinute();
-        String startMinutes = ""; String startTime = "";
+        String startMinutes = "";
         if(startingMinutes<10){
             startMinutes = "0" + startMinutes.concat(startingMinutes.toString());
         }else{
@@ -98,16 +101,17 @@ public class AddSchedule extends AppCompatActivity {
         }
         if(startingHours>12){
             startingHours = startingHours - 12;
-            startTime = startingHours.toString().concat(":").concat(startMinutes.toString().concat(" PM"));
+            startTime = startingHours.toString().concat(":").concat(startMinutes.concat(" PM"));
         }else{
-            startTime = startingHours.toString().concat(":").concat(startMinutes.toString().concat(" AM"));
+            startTime = startingHours.toString().concat(":").concat(startMinutes.concat(" AM"));
         }
         return startTime;
     }
-    public String endPickerData(){
+    //returns ending time string of busy hours
+    private String endPickerData(){
         Integer endingHours = endTimingPicker.getCurrentHour();
         Integer endingMinutes = endTimingPicker.getCurrentMinute();
-        String endMinutes = ""; String endTime = "";
+        String endMinutes = "";
         if(endingMinutes<10){
             endMinutes = "0" + endMinutes.concat(endingMinutes.toString());
         }else{
@@ -115,10 +119,17 @@ public class AddSchedule extends AppCompatActivity {
         }
         if(endingHours>12){
             endingHours = endingHours - 12;
-            endTime = endingHours.toString().concat(":").concat(endMinutes.toString().concat(" PM"));
+            endTime = endingHours.toString().concat(":").concat(endMinutes.concat(" PM"));
         }else{
-            endTime = endingHours.toString().concat(":").concat(endMinutes.toString().concat(" AM"));
+            endTime = endingHours.toString().concat(":").concat(endMinutes.concat(" AM"));
         }
         return endTime;
     }
+    public String returnStartBusy(){
+        return startTime;
+    }
+    public String returnEndBusy(){
+        return endTime;
+    }
+
 }
