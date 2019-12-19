@@ -15,28 +15,30 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 
 public class EditPreferences extends AppCompatActivity {
 
     private AudioManager myAudioManager;
-    Calendar c = Calendar.getInstance();
     AddSchedule addSchedule = new AddSchedule();
-    String busyHoursStarting; String busyHoursEnding;
-    String currentTime = "00:00 AM";
+    String busyHoursStarting;
+    String busyHoursEnding;
+    String currentTime;
 
-    RadioGroup radioGroupBusy,radioGroupFree;
-    RadioButton radioButtonBusy,radioButtonFree;
+    RadioGroup radioGroupBusy, radioGroupFree;
+    RadioButton radioButtonBusy, radioButtonFree;
     TextView textView;
+    TextView timeTV;
     String selectedProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        myAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         setContentView(R.layout.activity_edit_prefrences);
+
+        timeTV = findViewById(R.id.textClock);
         radioGroupBusy = findViewById(R.id.radioGroupBusy);
         radioGroupFree = findViewById(R.id.radioGroupFree);
         textView = findViewById(R.id.text_view_selected);
@@ -54,21 +56,24 @@ public class EditPreferences extends AppCompatActivity {
                 int radioIdfree = radioGroupFree.getCheckedRadioButtonId();
                 radioButtonBusy = findViewById(radioIdbusy);
                 radioButtonFree = findViewById(radioIdfree);
-                textView.setText("Your choice for busy hours: " + radioButtonBusy.getText()+
-                        "\n and for non-busy hours :"+radioButtonFree.getText());
+                textView.setText("Your choice for busy hours: " + radioButtonBusy.getText() +
+                        "\n and for non-busy hours :" + radioButtonFree.getText());
 
                 selectedProfile = radioButtonBusy.getText().toString();
                 //Profiles profile = new Profiles(selectedProfile);
                 //profile.changeProfile();
-                currentTime = currentTime();
+
+                currentTime = timeTV.getText().toString();
+
                 changeProfile();
 
-                Toast.makeText(EditPreferences.this,"Current Time : " +currentTime()
-                         +" \n Busy from "+busyHoursStarting+" to "+busyHoursEnding,
+                Toast.makeText(EditPreferences.this, "Current Time : " + currentTime
+                                + " \n Busy from " + busyHoursStarting + " to " + busyHoursEnding,
                         Toast.LENGTH_LONG).show();
             }
         });
     }
+
     public void checkButton(View v) {
         int radioIdBusy = radioGroupBusy.getCheckedRadioButtonId();
         radioButtonBusy = findViewById(radioIdBusy);
@@ -76,62 +81,45 @@ public class EditPreferences extends AppCompatActivity {
                 , Toast.LENGTH_SHORT).show();
 
     }
+
     public void checkButton2(View v) {
         int radioIdFree = radioGroupFree.getCheckedRadioButtonId();
         radioButtonFree = findViewById(radioIdFree);
-        Toast.makeText(this, "for non busy hours : "+radioButtonFree.getText(),
+        Toast.makeText(this, "for non busy hours : " + radioButtonFree.getText(),
                 Toast.LENGTH_SHORT).show();
     }
 
-    public void changeProfile(){
+    public void changeProfile() {
         addSchedule.returnStartBusy();
         addSchedule.returnEndBusy();
         busyHoursStarting = addSchedule.startTime;
         busyHoursEnding = addSchedule.endTime;
-        if(currentTime().equals(busyHoursStarting)
-                && selectedProfile.equals("Silent")){
+
+        //For Busy hours-
+        if (timeTV.getText().equals(busyHoursStarting)
+                && selectedProfile.equals("Silent")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        }else if(currentTime().equals(busyHoursStarting)
-                && selectedProfile.equals("Vibrate")){
+        } else if (timeTV.getText().equals(busyHoursStarting)
+                && selectedProfile.equals("Vibrate")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        }else if(currentTime().equals(busyHoursStarting)
-                &&selectedProfile.equals("Ringing")){
+        } else if (timeTV.getText().equals(busyHoursStarting)
+                && selectedProfile.equals("Ringing")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         }
-        //FOR NON-BUSY HOURS
-        if(currentTime().equals(busyHoursEnding)
-                && selectedProfile.equals("Silent")){
+
+        //For Non-Busy hours-
+        if (timeTV.getText().equals(busyHoursEnding)
+                && selectedProfile.equals("Silent")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        }else if(currentTime().equals(busyHoursEnding)
-                && selectedProfile.equals("Vibrate")){
+        } else if (timeTV.getText().equals(busyHoursEnding)
+                && selectedProfile.equals("Vibrate")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        }else if(currentTime().equals(busyHoursEnding)
-                &&selectedProfile.equals("Ringing")){
+        } else if (timeTV.getText().equals(busyHoursEnding)
+                && selectedProfile.equals("Ringing")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         }
     }
-    public String currentTime(){
 
-        int currHr = c.get(Calendar.HOUR_OF_DAY);
-        int currMin = c.get(Calendar.MINUTE);
-//        c.set(Calendar.HOUR_OF_DAY, currHr);
-//        c.set(Calendar.MINUTE, currMin);
-//        c.set(Calendar.SECOND, 0);
-        String currentMinutes = "";
-        if(currMin<10){
-            currentMinutes = "0" + currentMinutes.concat(String.valueOf(currMin));
-        }else{
-            currentMinutes = String.valueOf(currMin);
-        }
-        if(currHr>=12){
-            currHr = currHr - 12;
-            currentTime = String.valueOf(currHr).concat(":").concat(currentMinutes.concat(" PM"));
-        }else{
-            currentTime = String.valueOf(currHr).concat(":").concat(currentMinutes.concat(" AM"));
-        }
-
-        return currentTime;
-    }
     //DND ACCESS
     private void checkDndPermission(Context context) {
         NotificationManager notificationManager =

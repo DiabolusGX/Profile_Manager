@@ -19,7 +19,8 @@ public class AddSchedule extends AppCompatActivity {
     Button addTimingBtn, viewTimingBtn, editTimingBtn, deleteTimingBtn;
     TimePicker startTimingPicker, endTimingPicker;
     EditText timeTesting, idTiming;
-    String startTime = "12:29 AM"; String endTime = "12:30 AM";
+    String startTime = "12:29 AM";
+    String endTime = "12:30 AM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +41,12 @@ public class AddSchedule extends AppCompatActivity {
         deleteData();
     }
 
-    private void viewData(){
+    private void viewData() {
         viewTimingBtn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(AddSchedule.this,"WORK IN PROGRESS",
+                        Toast.makeText(AddSchedule.this, "WORK IN PROGRESS",
                                 Toast.LENGTH_LONG).show();
                     }
                 }
@@ -60,29 +61,31 @@ public class AddSchedule extends AppCompatActivity {
                         String x = startPickerData();
                         String y = endPickerData();
                         //testing toast
-                        Toast.makeText(AddSchedule.this,"FROM " +x+" to "+y,
+                        Toast.makeText(AddSchedule.this, "FROM " + x + " to " + y,
                                 Toast.LENGTH_LONG).show();
                     }
                 }
         );
     }
-    private void editData(){
+
+    private void editData() {
         editTimingBtn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(AddSchedule.this,"WORK IN PROGRESS",
+                        Toast.makeText(AddSchedule.this, "WORK IN PROGRESS",
                                 Toast.LENGTH_LONG).show();
                     }
                 }
         );
     }
-    private void deleteData(){
+
+    private void deleteData() {
         deleteTimingBtn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(AddSchedule.this,"WORK IN PROGRESS",
+                        Toast.makeText(AddSchedule.this, "WORK IN PROGRESS",
                                 Toast.LENGTH_LONG).show();
                     }
                 }
@@ -90,45 +93,48 @@ public class AddSchedule extends AppCompatActivity {
     }
 
     //returns stating time string of busy hours
-    private String startPickerData(){
+    private String startPickerData() {
         Integer startingHours = startTimingPicker.getCurrentHour();
         Integer startingMinutes = startTimingPicker.getCurrentMinute();
         String startMinutes = "";
-        if(startingMinutes<10){
+        if (startingMinutes < 10) {
             startMinutes = "0" + startMinutes.concat(startingMinutes.toString());
-        }else{
+        } else {
             startMinutes = startingMinutes.toString();
         }
-        if(startingHours>12){
+        if (startingHours > 12) {
             startingHours = startingHours - 12;
             startTime = startingHours.toString().concat(":").concat(startMinutes.concat(" PM"));
-        }else{
+        } else {
             startTime = startingHours.toString().concat(":").concat(startMinutes.concat(" AM"));
         }
         return startTime;
     }
+
     //returns ending time string of busy hours
-    private String endPickerData(){
+    private String endPickerData() {
         Integer endingHours = endTimingPicker.getCurrentHour();
         Integer endingMinutes = endTimingPicker.getCurrentMinute();
         String endMinutes = "";
-        if(endingMinutes<10){
+        if (endingMinutes < 10) {
             endMinutes = "0" + endMinutes.concat(endingMinutes.toString());
-        }else{
+        } else {
             endMinutes = endingMinutes.toString();
         }
-        if(endingHours>12){
+        if (endingHours > 12) {
             endingHours = endingHours - 12;
             endTime = endingHours.toString().concat(":").concat(endMinutes.concat(" PM"));
-        }else{
+        } else {
             endTime = endingHours.toString().concat(":").concat(endMinutes.concat(" AM"));
         }
         return endTime;
     }
-    public String returnStartBusy(){
+
+    public String returnStartBusy() {
         return startTime;
     }
-    public String returnEndBusy(){
+
+    public String returnEndBusy() {
         return endTime;
     }
 
