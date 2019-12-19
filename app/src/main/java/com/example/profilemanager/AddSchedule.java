@@ -3,6 +3,7 @@ package com.example.profilemanager;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -14,11 +15,9 @@ import android.widget.Toast;
 
 public class AddSchedule extends AppCompatActivity {
 
-    //EditPreferences editPrefrences = new EditPreferences();
-
     Button addTimingBtn, viewTimingBtn, editTimingBtn, deleteTimingBtn;
     TimePicker startTimingPicker, endTimingPicker;
-    EditText timeTesting, idTiming;
+    EditText idTiming;
     String startTime = "12:29 AM";
     String endTime = "12:30 AM";
 
@@ -138,4 +137,14 @@ public class AddSchedule extends AppCompatActivity {
         return endTime;
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+
+        intent.putExtra("StartData", startPickerData());
+        intent.putExtra("EndData", endPickerData());
+
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

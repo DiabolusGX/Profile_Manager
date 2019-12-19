@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 
 public class EditPreferences extends AppCompatActivity {
+    private static final String TAG = "EditPreferences";
 
     private AudioManager myAudioManager;
     AddSchedule addSchedule = new AddSchedule();
@@ -29,6 +31,8 @@ public class EditPreferences extends AppCompatActivity {
     TextView textView;
     TextView timeTV;
     String selectedProfile;
+    String startData;
+    String endData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class EditPreferences extends AppCompatActivity {
         myAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         setContentView(R.layout.activity_edit_prefrences);
+
+        getScheduleTimings();
 
         timeTV = findViewById(R.id.textClock);
         radioGroupBusy = findViewById(R.id.radioGroupBusy);
@@ -92,8 +98,8 @@ public class EditPreferences extends AppCompatActivity {
     public void changeProfile() {
         addSchedule.returnStartBusy();
         addSchedule.returnEndBusy();
-        busyHoursStarting = addSchedule.startTime;
-        busyHoursEnding = addSchedule.endTime;
+        busyHoursStarting = startData;
+        busyHoursEnding = endData;
 
         //For Busy hours-
         if (timeTV.getText().equals(busyHoursStarting)
@@ -134,5 +140,17 @@ public class EditPreferences extends AppCompatActivity {
 
             startActivity(intent);
         }
+    }
+
+    private void getScheduleTimings() {
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+            startData = "NONE";
+            endData = "NONE";
+        } else {
+            startData = extras.getString("StartData");
+            endData = extras.getString("EndData");
+        }
+        Log.d(TAG, "getScheduleTimings: startData = " +startData);
     }
 }
