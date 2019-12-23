@@ -11,25 +11,26 @@
         android:id="@+id/addScheduleBtn"
         android:layout_width="146dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="188dp"
         android:background="@drawable/rounded_button"
         android:text="EDIT SCHEDULE"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/editPrefrencesBtn"
         android:layout_width="146dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/rounded_button"
         android:text="EDIT PREFRENCES "
         android:textColor="@android:color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/addScheduleBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
@@ -56,10 +57,9 @@
         android:textAlignment="center"
         android:textColor="#E1FFAB90"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/editPrefrencesBtn"
+        app:layout_constraintBottom_toTopOf="@+id/addScheduleBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImg"
-        app:layout_constraintVertical_bias="0.531" />
+        app:layout_constraintTop_toBottomOf="@+id/logoImg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -73,7 +73,7 @@ public class EditPreferences extends AppCompatActivity {
 
                 changeProfile();
 
-                Toast.makeText(EditPreferences.this, "Current Time : " + currentTime
+                Toast.makeText(EditPreferences.this, "Current Time : " + timeTV.getText().toString()
                                 + " \n Busy from " + busyHoursStarting + " to " + busyHoursEnding,
                         Toast.LENGTH_LONG).show();
             }
@@ -102,25 +102,25 @@ public class EditPreferences extends AppCompatActivity {
         busyHoursEnding = endData;
 
         //For Busy hours-
-        if (timeTV.getText().equals(busyHoursStarting)
+        if (timeTV.getText().toString().equals(busyHoursStarting)
                 && selectedProfile.equals("Silent")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        } else if (timeTV.getText().equals(busyHoursStarting)
+        } else if (timeTV.getText().toString().equals(busyHoursStarting)
                 && selectedProfile.equals("Vibrate")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        } else if (timeTV.getText().equals(busyHoursStarting)
+        } else if (timeTV.getText().toString().equals(busyHoursStarting)
                 && selectedProfile.equals("Ringing")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         }
 
         //For Non-Busy hours-
-        if (timeTV.getText().equals(busyHoursEnding)
+        if (timeTV.getText().toString().equals(busyHoursEnding)
                 && selectedProfile.equals("Silent")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-        } else if (timeTV.getText().equals(busyHoursEnding)
+        } else if (timeTV.getText().toString().equals(busyHoursEnding)
                 && selectedProfile.equals("Vibrate")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        } else if (timeTV.getText().equals(busyHoursEnding)
+        } else if (timeTV.getText().toString().equals(busyHoursEnding)
                 && selectedProfile.equals("Ringing")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         }
