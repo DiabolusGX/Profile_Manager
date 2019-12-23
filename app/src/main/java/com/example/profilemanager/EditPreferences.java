@@ -30,7 +30,7 @@ public class EditPreferences extends AppCompatActivity {
     RadioButton radioButtonBusy, radioButtonFree;
     TextView textView;
     TextView timeTV;
-    String selectedProfile;
+    String busyProfile, freeProfile;
     String startData;
     String endData;
 
@@ -63,9 +63,10 @@ public class EditPreferences extends AppCompatActivity {
                 radioButtonBusy = findViewById(radioIdbusy);
                 radioButtonFree = findViewById(radioIdfree);
                 textView.setText("Your choice for busy hours: " + radioButtonBusy.getText() +
-                        "\n and for non-busy hours :" + radioButtonFree.getText());
+                        "\n and for non-busy hours : " + radioButtonFree.getText());
 
-                selectedProfile = radioButtonBusy.getText().toString();
+                busyProfile = radioButtonBusy.getText().toString();
+                freeProfile = radioButtonFree.getText().toString();
                 //Profiles profile = new Profiles(selectedProfile);
                 //profile.changeProfile();
 
@@ -73,9 +74,9 @@ public class EditPreferences extends AppCompatActivity {
 
                 changeProfile();
 
-                Toast.makeText(EditPreferences.this, "Current Time : " + timeTV.getText().toString()
-                                + " \n Busy from " + busyHoursStarting + " to " + busyHoursEnding,
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(EditPreferences.this, "Current Time : " + currentTime
+//                                + " \n Busy from " + busyHoursStarting + " to " + busyHoursEnding,
+//                        Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -103,25 +104,37 @@ public class EditPreferences extends AppCompatActivity {
 
         //For Busy hours-
         if (timeTV.getText().toString().equals(busyHoursStarting)
-                && selectedProfile.equals("Silent")) {
+                && busyProfile.equals("Silent")) {
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+            Toast.makeText(this, "PROFILE CHANGED TO: SILENT",
+                    Toast.LENGTH_SHORT).show();
         } else if (timeTV.getText().toString().equals(busyHoursStarting)
-                && selectedProfile.equals("Vibrate")) {
+                && busyProfile.equals("Vibrate")) {
+            Toast.makeText(this, "PROFILE CHANGED TO: VIBRATE",
+                    Toast.LENGTH_SHORT).show();
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         } else if (timeTV.getText().toString().equals(busyHoursStarting)
-                && selectedProfile.equals("Ringing")) {
+                && busyProfile.equals("Ringing")) {
+            Toast.makeText(this, "PROFILE CHANGED TO: RINGING",
+                    Toast.LENGTH_SHORT).show();
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         }
 
         //For Non-Busy hours-
         if (timeTV.getText().toString().equals(busyHoursEnding)
-                && selectedProfile.equals("Silent")) {
+                && freeProfile.equals("Silent")) {
+            Toast.makeText(this, "PROFILE CHANGED TO: SILENT",
+                    Toast.LENGTH_SHORT).show();
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
         } else if (timeTV.getText().toString().equals(busyHoursEnding)
-                && selectedProfile.equals("Vibrate")) {
+                && freeProfile.equals("Vibrate")) {
+            Toast.makeText(this, "PROFILE CHANGED TO: VIBRATE",
+                    Toast.LENGTH_SHORT).show();
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         } else if (timeTV.getText().toString().equals(busyHoursEnding)
-                && selectedProfile.equals("Ringing")) {
+                && freeProfile.equals("Ringing")) {
+            Toast.makeText(this, "PROFILE CHANGED TO: RINGING",
+                    Toast.LENGTH_SHORT).show();
             myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
         }
     }
