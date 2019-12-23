@@ -152,5 +152,6 @@ public class EditPreferences extends AppCompatActivity {
             endData = extras.getString("EndData");
         }
         Log.d(TAG, "getScheduleTimings: startData = " +startData);
+        Log.d(TAG, "getScheduleTimings: endData = " +endData);
     }
 }
